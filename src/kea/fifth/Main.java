@@ -1,33 +1,46 @@
 package kea.fifth;
 
+import kea.fifth.eatbeahviour.EatNicely;
+import kea.fifth.flybehaviour.FloNoWay;
+import kea.fifth.flybehaviour.RideAMC;
+import kea.fifth.quackbehaviour.Mute;
+import kea.fifth.quackbehaviour.Squick;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-        Duck mallardDuck = new MallardDuck();
-        //Duck redHeadDuck = new RedHeadDuck();
-        Duck rubberDuck = new RubberDuck();
+        Duck md = new MallardDuck();
 
-        List<Duck> ducks = new ArrayList<>();
-        ducks.add(mallardDuck);
-        //ducks.add(redHeadDuck);
-        ducks.add(rubberDuck);
+        md.display();
+        md.swim();
+        md.performFly();
+        md.getQuackbehaviour();
 
-        for (Duck d: ducks) {
-            d.display();
-            d.swim();
 
-            if(d instanceof RubberDuck){
-                ((RubberDuck)d).quack();
-            }
+        Duck rd = new RubberDuck();
+        rd.display();
+        rd.swim();
+        rd.getQuackbehaviour();
 
-            if(d instanceof MallardDuck){
-                ((MallardDuck)d).fly();
-                ((MallardDuck)d).quack();
-            }
+        // enj jæger skyder anden!
+        md.setFlybehaviour(new FloNoWay());
+        md.setQuackbehaviour(new Mute());
+        md.display();
+        md.performFly();
+        md.getQuackbehaviour();
 
-        }
+
+        md.setFlybehaviour(new RideAMC());
+        md.performFly();
+
+
+        md.setEatbehaviour(new EatNicely());
+        md.getEatbehaviour();
+
+
+
     }
 }
